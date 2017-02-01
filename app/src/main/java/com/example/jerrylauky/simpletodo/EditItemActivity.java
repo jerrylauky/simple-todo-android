@@ -11,6 +11,8 @@ public class EditItemActivity extends AppCompatActivity {
     String itemName;
     int itemPos;
 
+    private final String EMPTY_NAME_WARNING = "Please enter item name.";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class EditItemActivity extends AppCompatActivity {
         String itemText = etItemName.getText().toString();
 
         if (itemText.toString().length() == 0) {
-            Toast.makeText(v.getContext(), "Please enter item name.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), EMPTY_NAME_WARNING, Toast.LENGTH_SHORT).show();
             return;
         }
 

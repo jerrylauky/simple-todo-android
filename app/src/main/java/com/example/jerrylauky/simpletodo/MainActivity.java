@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     ListView lvItems;
 
     private final int REQUEST_CODE = 100;
+    private final String FILE_PATH = "todo.txt";
+    private final String EMPTY_NAME_WARNING = "Please enter item name.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         String itemText = etNewItem.getText().toString();
 
         if (itemText.toString().length() == 0) {
-            Toast.makeText(v.getContext(), "Please enter item name.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), EMPTY_NAME_WARNING, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void readItems () {
         File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "todo.txt");
+        File todoFile = new File(filesDir, FILE_PATH);
 
         try {
             items = new ArrayList<String>(FileUtils.readLines(todoFile));
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void writeItems () {
         File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "todo.txt");
+        File todoFile = new File(filesDir, FILE_PATH);
 
         try {
             FileUtils.writeLines(todoFile, items);
