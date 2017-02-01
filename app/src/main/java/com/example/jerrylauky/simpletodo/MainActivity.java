@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
 
@@ -58,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
     public void onAddItem (View v) {
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
         String itemText = etNewItem.getText().toString();
+
+        if (itemText.toString().length() == 0) {
+            Toast.makeText(v.getContext(), "Please enter item name.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // or through the adaptor itself
         itemsAdapter.add(itemText);

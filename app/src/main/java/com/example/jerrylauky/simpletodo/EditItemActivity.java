@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class EditItemActivity extends AppCompatActivity {
     String itemName;
@@ -26,6 +27,11 @@ public class EditItemActivity extends AppCompatActivity {
         // get data
         EditText etItemName = (EditText) findViewById(R.id.etItemName);
         String itemText = etItemName.getText().toString();
+
+        if (itemText.toString().length() == 0) {
+            Toast.makeText(v.getContext(), "Please enter item name.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // create intent to store data
         Intent data = new Intent();
