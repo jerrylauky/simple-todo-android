@@ -3,6 +3,7 @@ package com.example.jerrylauky.simpletodo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         // add items through ArrayList attached to the adaptor
         items.add("First Item");
         items.add("Second Item");
+
+        setupListViewListener();
     }
 
     public void onAddItem (View v) {
@@ -36,5 +39,17 @@ public class MainActivity extends AppCompatActivity {
         // or through the adaptor itself
         itemsAdapter.add(itemText);
         etNewItem.setText("");
+    }
+
+    private void setupListViewListener () {
+        lvItems.setOnItemLongClickListener(
+                new AdapterView.OnItemLongClickListener() {
+                    public boolean onItemLongClick (AdapterView<?> adapter, View item, int pos, long id) {
+                        items.remove(pos);
+                        itemsAdapter.notifyDataSetChanged();
+                        return true;
+                    }
+                }
+        );
     }
 }
