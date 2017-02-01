@@ -34,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
         lvItems.setAdapter(itemsAdapter);
 
         // add items through ArrayList attached to the adaptor
-        items.add("First Item");
-        items.add("Second Item");
+        // this is not needed since data is persisted
+        // items.add("First Item");
+        // items.add("Second Item");
 
         // all listeners on list view go here
         setupListViewListener();
