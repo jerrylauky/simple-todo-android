@@ -2,7 +2,9 @@ package com.example.jerrylauky.simpletodo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -21,7 +23,18 @@ public class MainActivity extends AppCompatActivity {
         items = new ArrayList<>();
         itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
         lvItems.setAdapter(itemsAdapter);
+
+        // add items through ArrayList attached to the adaptor
         items.add("First Item");
         items.add("Second Item");
+    }
+
+    public void onAddItem (View v) {
+        EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
+        String itemText = etNewItem.getText().toString();
+
+        // or through the adaptor itself
+        itemsAdapter.add(itemText);
+        etNewItem.setText("");
     }
 }
